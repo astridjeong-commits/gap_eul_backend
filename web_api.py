@@ -84,8 +84,8 @@ except Exception as e:
 # 한글 폰트 설정 (Windows 기본 폰트)
 try:
     # 맑은 고딕 폰트 경로
-    FONT_PATH = "C:/Windows/Fonts/malgun.ttf"
-    FONT_BOLD_PATH = "C:/Windows/Fonts/malgunbd.ttf"
+    FONT_PATH = "fonts/AppleGothic.ttf"
+    FONT_BOLD_PATH = "fonts/AppleGothic.ttf"
     
     if os.path.exists(FONT_PATH):
         pdfmetrics.registerFont(TTFont('Malgun', FONT_PATH))
