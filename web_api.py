@@ -732,8 +732,8 @@ async def export_to_notion(request: dict):
 #                     "paragraph": {
 #                         "rich_text": [{"type": "text", "text": {"content": line[:2000]}}]
 #                     }
-                })
-        
+#                 })
+#         
         # 2. 분석 결과 요약 섹션
         children.append({
             "object": "block",
