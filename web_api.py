@@ -489,19 +489,19 @@ def generate_pdf_report(analysis_result: dict, contract_text: str) -> bytes:
             elements.append(Paragraph(rec_text, body_style))
             elements.append(Spacer(1, 3*mm))
     
-    # 4. 계약서 원문 (일부)
-    elements.append(PageBreak())
-    elements.append(Paragraph("4. 계약서 원문 (처음 1000자)", heading_style))
-    
-    contract_preview = contract_text[:1000] + "..."
-    elements.append(Paragraph(contract_preview, ParagraphStyle(
-        'Contract',
-        parent=body_style,
-        fontSize=8,
-        textColor=colors.HexColor('#64748b'),
-        leftIndent=3*mm,
-        rightIndent=3*mm
-    )))
+#     # 4. 계약서 원문 (일부)
+#     elements.append(PageBreak())
+#     elements.append(Paragraph("4. 계약서 원문 (처음 1000자)", heading_style))
+#     
+#     contract_preview = contract_text[:1000] + "..."
+#     elements.append(Paragraph(contract_preview, ParagraphStyle(
+#         'Contract',
+#         parent=body_style,
+#         fontSize=8,
+# #         textColor=colors.HexColor('#64748b'),
+# #         leftIndent=3*mm,
+# #         rightIndent=3*mm
+#     )))
     
     # PDF 생성
     doc.build(elements)
@@ -711,27 +711,27 @@ async def export_to_notion(request: dict):
         # 페이지 본문 내용 구성
         children = []
         
-        # 1. 계약서 원문 섹션
-        children.append({
-            "object": "block",
-            "type": "heading_2",
-            "heading_2": {
-                "rich_text": [{"type": "text", "text": {"content": "계약서 원문"}}]
-            }
-        })
-        
-        # 계약서 텍스트를 2000자로 제한
-        contract_preview = contract_text[:2000] if len(contract_text) > 2000 else contract_text
-        
-        # 텍스트를 줄 단위로 분할하여 추가
-        for line in contract_preview.split('\n'):
-            if line.strip():
-                children.append({
-                    "object": "block",
-                    "type": "paragraph",
-                    "paragraph": {
-                        "rich_text": [{"type": "text", "text": {"content": line[:2000]}}]
-                    }
+#         # 1. 계약서 원문 섹션
+#         children.append({
+#             "object": "block",
+#             "type": "heading_2",
+#             "heading_2": {
+#                 "rich_text": [{"type": "text", "text": {"content": "계약서 원문"}}]
+#             }
+#         })
+#         
+#         # 계약서 텍스트를 2000자로 제한
+#         contract_preview = contract_text[:2000] if len(contract_text) > 2000 else contract_text
+#         
+#         # 텍스트를 줄 단위로 분할하여 추가
+#         for line in contract_preview.split('\n'):
+#             if line.strip():
+#                 children.append({
+#                     "object": "block",
+#                     "type": "paragraph",
+#                     "paragraph": {
+#                         "rich_text": [{"type": "text", "text": {"content": line[:2000]}}]
+#                     }
                 })
         
         # 2. 분석 결과 요약 섹션
