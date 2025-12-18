@@ -186,7 +186,7 @@ def extract_text_from_pdf(file_content: bytes) -> str:
         corrupt_check = '\\' in text[:100] if len(text) > 100 else False
         is_corrupted = len(text) > 0 and (suspicious_chars / len(text) > 0.1 or corrupt_check)
         
-        if len(text) < 100 or is_corrupted:
+        if len(text) < 100:
             print(f"   📊 추출된 텍스트: {len(text)}자 (부족)")
             
             if not OCR_AVAILABLE:
