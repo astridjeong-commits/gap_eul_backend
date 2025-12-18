@@ -182,7 +182,9 @@ def extract_text_from_pdf(file_content: bytes) -> str:
         text = text.strip()
         
         # 2단계: 텍스트가 부족하면 OCR 시도
-        if len(text) < 100:
+        if len(text) < 100 or is_corrupted:
+        suspicious_chars = sum(1 for c in text if ord(c) > 127)
+        is_corrupted = len(text) > 0 and suspicious_chars / len(text) > 0.3
             print(f"   📊 추출된 텍스트: {len(text)}자 (부족)")
             
             if not OCR_AVAILABLE:
